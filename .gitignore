@@ -52,3 +52,4 @@ infra-ai-backstage/packages/*/dist/
 # Archivos de backup y configuración
 backup-env-*.env
 *.env.backup
+app-config.local.yaml
