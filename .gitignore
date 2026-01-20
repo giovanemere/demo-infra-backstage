@@ -49,3 +49,6 @@ id_rsa*
 infra-ai-backstage/.env
 infra-ai-backstage/node_modules/
 infra-ai-backstage/packages/*/dist/
+# Archivos de backup y configuración
+backup-env-*.env
+*.env.backup

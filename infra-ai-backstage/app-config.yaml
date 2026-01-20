@@ -38,14 +38,15 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, Template, User, Group]
   locations:
-    # Repository principal con auto-sync
+    # Repository principal - Componentes dinámicos del AI Agent
     - type: url
       target: https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/blob/${GITHUB_BRANCH}${CATALOG_PATH}
-    # Usuarios locales
-    - type: file
-      target: ./catalog-users.yaml
+    
+    # Templates Repository - Componentes generados y configuración del IDP
+    - type: url
+      target: https://github.com/${GITHUB_ORG}/demo-infra-ai-agent-template-idp/blob/main/
       rules:
-        - allow: [User, Group]
+        - allow: [Component, Resource, System, User, Group]
   providers:
     github:
       providerId: default
