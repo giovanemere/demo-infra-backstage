@@ -23,6 +23,7 @@ backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 // catalog plugin
 backend.add(import('@backstage/plugin-catalog-backend'));
 backend.add(import('@backstage/plugin-catalog-backend-module-github'));
+backend.add(import('@backstage/plugin-catalog-backend-module-scaffolder-entity-model'));
 
 // See https://backstage.io/docs/features/software-catalog/configuration#subscribing-to-catalog-errors
 backend.add(import('@backstage/plugin-catalog-backend-module-logs'));
@@ -55,6 +56,10 @@ backend.add(import('@backstage/plugin-signals-backend'));
 // scaffolder plugin
 backend.add(import('@backstage/plugin-scaffolder-backend'));
 backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
+backend.add(import('@backstage/plugin-scaffolder-backend-module-gitlab'));
+backend.add(import('@backstage/plugin-scaffolder-backend-module-bitbucket'));
+backend.add(import('@backstage/plugin-scaffolder-backend-module-azure'));
+backend.add(import('@backstage/plugin-scaffolder-backend-module-gerrit'));
 
 // techdocs plugin
 backend.add(import('@backstage/plugin-techdocs-backend'));

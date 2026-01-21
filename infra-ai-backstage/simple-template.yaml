@@ -1,0 +1,63 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: simple-aws-template
+  title: Simple AWS Template
+  description: Template básico para crear componentes AWS
+  tags:
+    - recommended
+    - aws
+    - simple
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Información del Proyecto
+      required:
+        - name
+        - description
+      properties:
+        name:
+          title: Nombre del Proyecto
+          type: string
+          description: Nombre único para el proyecto
+          pattern: '^[a-zA-Z0-9-]+$'
+        description:
+          title: Descripción
+          type: string
+          description: Descripción del proyecto
+        owner:
+          title: Propietario
+          type: string
+          description: Propietario del componente
+          default: user:guest
+  steps:
+    - id: template
+      name: Crear Archivos
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+    - id: publish
+      name: Publicar en GitHub
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: 'Proyecto AWS: ${{ parameters.name }}'
+        repoUrl: github.com?owner=giovanemere&repo=${{ parameters.name }}
+    - id: register
+      name: Registrar en Catálogo
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+  output:
+    links:
+      - title: Repositorio
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Abrir en Catálogo
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}

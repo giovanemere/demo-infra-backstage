@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name }}
+  description: ${{ values.description }}
+  tags:
+    - aws
+    - web
+    - s3
+    - cloudfront
+  annotations:
+    github.com/project-slug: giovanemere/${{ values.name }}
+    aws.com/region: ${{ values.region }}
+spec:
+  type: website
+  lifecycle: production
+  owner: user:guest

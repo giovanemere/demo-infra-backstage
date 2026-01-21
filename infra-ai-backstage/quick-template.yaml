@@ -1,0 +1,26 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: quick-aws-app
+  title: Quick AWS App
+  description: Template rápido para AWS
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Basic Info
+      required: [name]
+      properties:
+        name:
+          title: Name
+          type: string
+  steps:
+    - id: log
+      name: Log
+      action: debug:log
+      input:
+        message: 'Creating ${{ parameters.name }}'
+  output:
+    text:
+      - title: Success
+        content: 'Created ${{ parameters.name }}'
