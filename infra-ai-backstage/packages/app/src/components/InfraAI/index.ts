@@ -1,0 +1,1 @@
+export { InfraAIPage } from './InfraAIPage';
